@@ -1,5 +1,7 @@
-const router = require('express').Router();
+const express = require('express');
 const Recipes = require('./model');
+
+const router = express.Router();
 
 router.get('/:id', (req, res, next) => {
     Recipes.getRecipeById(req.params.id)
@@ -16,3 +18,5 @@ router.use((err, req, res, next) => { // eslint-disable-line
       stack: err.stack,
     })
   })
+
+  module.exports = router;

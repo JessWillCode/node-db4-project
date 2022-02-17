@@ -1,4 +1,4 @@
-const db = require('../../data/db-config');
+const db = require('../data/db-config');
 
 // select 
 // r.recipe_id,
@@ -26,7 +26,13 @@ async function getRecipeById(recipe_id) {
     .select('r.recipe_id', 'r.recipe_name', 'st.step_id', 'st.step_number', 'st.step_instructions', 'sting.ingredient_id', 'ing.ingredient_name', 'sting.quantity')
     .where('r.recipe_id', recipe_id);
 
-    return query;
+    const result = {
+        recipe_id: query[0].recipe_id,
+        recipe_name: query[0].recipe_name,
+        steps: []
+    }
+
+    return result;
 }
 
 module.exports = {
